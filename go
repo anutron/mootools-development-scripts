@@ -7,14 +7,7 @@ else
 fi
 case $option in
     [i]* ) 
-        curl -O -k https://raw.github.com/pypa/virtualenv/master/virtualenv.py;
-        python virtualenv.py env;
-        rm virtualenv.*;
-        rm setuptools*;
-        env/bin/easy_install crepo;
-        cd lib;
-        ../env/bin/crepo sync;
-        cd mootools-runner;
+        cd lib/mootools-runner;
         git submodule update --init;
         cd ../dev-app;
         ln -s ../../settings.py;
