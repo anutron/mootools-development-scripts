@@ -1,29 +1,29 @@
 #!/bin/bash
 sync() {
-    cd lib/configurations;
+    cd configurations;
     for f in *
     do
       cd $f
       echo "~~~~~~~~~~~~ Syncronizing project: $f ~~~~~~~~~~~~"
-      ../../../env/bin/crepo sync;
+      ../../env/bin/crepo sync;
       cd ..
     done
 }
 
 
 check() {
-    cd lib/configurations;
+    cd configurations;
     for f in *
     do
       cd $f
       echo "~~~~~~~~~~~~ Checking project: $f ~~~~~~~~~~~~"
-      ../../../env/bin/crepo check-dirty;
+      ../../env/bin/crepo check-dirty;
       cd ..
     done
 }
 apps(){
-    cd lib/applications
-    ../../env/bin/crepo check-dirty
+    cd applications
+    ../env/bin/crepo check-dirty
 }
 
 if [ $# -lt 1 ]; then
@@ -34,23 +34,23 @@ else
 fi
 case $option in
     [i]* ) 
-        cd lib/applications/mootools-runner;
+        cd applications/mootools-runner;
         git submodule update --init;
         cd ../dev-app;
-        ln -s ../../../settings.py;
+        ln -s ../../settings.py;
         cd ../depender/django;
-        ../../../../env/bin/python setup.py develop;
+        ../../../env/bin/python setup.py develop;
         cd ../../dev-app;
-        ../../../env/bin/python setup.py develop;;
+        ../../env/bin/python setup.py develop;;
     [d]* )
-        cd lib/applications/dev-app;
-        ../../../env/bin/python manage.py depender_check;;
+        cd applications/dev-app;
+        ../../env/bin/python manage.py depender_check;;
     [r]* )
-        cd lib/applications/dev-app;
-        ../../../env/bin/python manage.py runserver_plus 0.0.0.0:9876;;
+        cd applications/dev-app;
+        ../../env/bin/python manage.py runserver_plus 0.0.0.0:9876;;
     [l]* )
-        cd lib/applications/dev-app;
-        ../../../env/bin/python manage.py runserver 0.0.0.0:80;;
+        cd applications/dev-app;
+        ../../env/bin/python manage.py runserver 0.0.0.0:80;;
     [c]* )
         check;;
     [a]* )
